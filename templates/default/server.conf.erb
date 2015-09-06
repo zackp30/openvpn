@@ -35,3 +35,9 @@ push "route <%= route %>"
 <%= line %>
   <% end -%>
 <% end %>
+verb 3
+<% if @static_addrs %>
+client-config-dir /etc/openvpn/ccd
+<% end %>
+
+topology subnet

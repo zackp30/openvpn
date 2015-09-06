@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+require 'ipaddr'
+
 def chef_solo_search_installed?
   klass = ::Search.const_get('Helper')
   return klass.is_a?(Class)
@@ -26,9 +28,24 @@ end
 
 if Chef::Config[:solo] && !chef_solo_search_installed?
   Chef::Log.warn('This recipe uses search. Chef-Solo does not support search unless '\
-    'you install the chef-solo-search cookbook.')
+                 'you install the chef-solo-search cookbook.')
 else
+  log 'ok' do
+    message node['openvpn'].inspect
+    level :info
+  end
+  if node['openvpn']['static_addrs']
+    directory "/etc/openvpn/ccd" do
+      action :create
+    end
+  end
   search('users', node['openvpn']['user_query']) do |u|
+    if u['openvpn_ip']
+      file "/etc/openvpn/ccd/#{u['id']}" do
+        content "ifconfig-push #{u['openvpn_ip']} #{node['openvpn']['netmask']}"
+        action :create_if_missing
+      end
+    end
     execute "generate-openvpn-#{u['id']}" do
       command "./pkitool #{u['id']}"
       cwd '/etc/openvpn/easy-rsa'

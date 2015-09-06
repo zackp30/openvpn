@@ -39,4 +39,5 @@ end
 service 'openvpn' do
   service_name service_name
   action [:enable, :start]
+  ignore_failure true
 end

@@ -28,7 +28,8 @@ action :create do
     variables(
       config: new_resource.config || node['openvpn']['config'],
       push_routes: node['openvpn']['push_routes'],
-      push_options: node['openvpn']['push_options']
+      push_options: node['openvpn']['push_options'],
+      static_addrs: node['openvpn']['static_addrs']
     )
     helpers do
       # rubocop:disable Metrics/MethodLength
