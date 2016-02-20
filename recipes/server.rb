@@ -17,7 +17,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_recipe 'openvpn::enable_ip_forwarding'
 include_recipe 'openvpn::install_bridge_utils' if node['openvpn']['type'] == 'bridge'
 include_recipe 'openvpn::install'
 
