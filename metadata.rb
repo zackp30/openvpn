@@ -12,7 +12,7 @@ recipe 'openvpn::server',               'Installs and configures OpenVPN as a se
 recipe 'openvpn::client',               'Installs and configures OpenVPN as a client.'
 recipe 'openvpn::service',              'Manages the OpenVPN system service.'
 recipe 'openvpn::users',                'Sets up openvpn cert/configs for users data bag items.'
-recipe 'openvpn::install_bridge_utils', 'Installs bridge uitilies for Linux.'
+recipe 'openvpn::install_bridge_utils', 'Installs bridge utilities for Linux.'
 
 depends 'apt'
 depends 'yum', '~> 3.0'

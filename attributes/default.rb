@@ -66,6 +66,7 @@ default['openvpn']['config']['group'] = value_for_platform_family(rhel: 'nobody'
 default['openvpn']['config']['local']           = node['ipaddress']
 default['openvpn']['config']['proto']           = 'udp'
 default['openvpn']['config']['port']            = '1194'
+default['openvpn']['config']['server_port']            = '1194'
 default['openvpn']['config']['keepalive']       = '10 120'
 default['openvpn']['config']['log']             = '/var/log/openvpn.log'
 default['openvpn']['config']['push']            = nil
