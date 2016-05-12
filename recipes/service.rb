@@ -30,6 +30,11 @@ when 'rhel'
   else
     service_name = 'openvpn'
   end
+when 'suse'
+  link '/etc/systemd/system/multi-user.target.wants/openvpn@server.service' do
+    to '/usr/lib/systemd/system/openvpn@.service'
+  end
+  service_name = 'openvpn@server.service'
 when 'arch'
   service_name = 'openvpn@server.service'
 else

@@ -9,7 +9,16 @@
 <%- @config.sort.each do |key, values| -%>
 <%- [*values].each do |value| -%>
 <%- next if value.nil? -%>
-<%= key %> <%=
+<%=
+case key
+when "server_port"
+    "port" # a different client port is used from the server port
+when "port"
+    "#" # comment the rest
+else
+    key
+end
+%> <%=
   case value
   when String
     value
